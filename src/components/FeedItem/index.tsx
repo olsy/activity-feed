@@ -20,7 +20,9 @@ const FeedItem = ({ id, type, from, to, message, timestamp }: Props) => {
     <FeedContainer type={type} timestamp={timestamp} remove={() => dispatch(removeById(id))}>
       <Box>
         <Title type={type} from={from} to={to} />
-        <Typography sx={{ fontSize: '0.8em' }}>{message}</Typography>
+        <Typography sx={{ fontSize: '0.8em' }} data-testid="message">
+          {message}
+        </Typography>
       </Box>
     </FeedContainer>
   );

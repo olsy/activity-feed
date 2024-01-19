@@ -13,7 +13,7 @@ const Title = ({ type, from, to }: Props) => {
     throw new Error('Invalid type');
   }
   return (
-    <Typography>
+    <Typography data-testid="title">
       <Typography component="span" color="primary" sx={{ fontWeight: 600 }}>
         {from}
       </Typography>

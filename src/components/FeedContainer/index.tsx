@@ -43,7 +43,7 @@ const FeedContainer = ({ type = Type.List, timestamp = '', children, remove }: P
   <Wrapper direction={'row'} alignItems="center" spacing={2} sx={{ padding: '6px 0' }}>
     <Box>
       <Stack direction={'row'} alignItems="center" justifyContent="flex-end">
-        <Typography mr={2} sx={{ width: '100px', overflow: 'hidden', textAlign: 'right', fontSize: '0.7em' }}>
+        <Typography mr={2} sx={{ width: '100px', overflow: 'hidden', textAlign: 'right', fontSize: '0.7em' }} data-testid="timestamp">
           {timestamp && moment(timestamp).fromNow(true)}
         </Typography>
         <Icon type={type} />

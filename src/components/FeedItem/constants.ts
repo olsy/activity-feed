@@ -6,4 +6,5 @@ export const TitleParts = {
   [Type.Beer]: ` had a beer with `,
   [Type.Coffee]: ` had a coffee with `,
   [Type.Note]: ` had a note with `,
+  [Type.List]: null,
 };
