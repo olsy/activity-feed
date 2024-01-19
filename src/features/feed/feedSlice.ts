@@ -8,6 +8,7 @@ export enum Type {
   Beer = 'Beer',
   Coffee = 'Coffee',
   Note = 'Message',
+  List = 'New',
 }
 
 export interface FeedItem {
@@ -20,48 +21,52 @@ export interface FeedItem {
 }
 
 export interface feedState {
+  count: number;
   data: FeedItem[];
 }
 
+const mock = [
+  {
+    id: 1,
+    type: Type.Meeting,
+  },
+  {
+    id: 2,
+    type: Type.Call,
+  },
+  {
+    id: 3,
+    type: Type.Coffee,
+  },
+  {
+    id: 4,
+    type: Type.Beer,
+  },
+  {
+    id: 5,
+    type: Type.Note,
+  },
+].map((el) => ({
+  ...el,
+  from: 'You',
+  to: 'Milton Romaguera',
+  timestamp: new Date().toISOString(),
+  message: 'And a more formal meeting',
+}));
+
 const initialState: feedState = {
-  data: [
-    {
-      id: 1,
-      type: Type.Meeting,
-      message: 'And a more formal meeting',
-      timestamp: '6d',
-    },
-    {
-      id: 2,
-      type: Type.Call,
-      message: 'And a more formal meeting',
-      timestamp: '6d',
-    },
-    {
-      id: 3,
-      type: Type.Coffee,
-      message: 'And a more formal meeting',
-      timestamp: '6d',
-    },
-    {
-      id: 4,
-      type: Type.Beer,
-      message: 'And a more formal meeting',
-      timestamp: '6d',
-    },
-    {
-      id: 5,
-      type: Type.Note,
-      message: 'And a more formal meeting',
-      timestamp: '6d',
-    },
-  ].map((el) => ({ ...el, from: 'You', to: 'Milton Romaguera' })),
+  count: mock.length || 0,
+  data: mock || [],
 };
 
 export const feedSlice = createSlice({
   name: 'feed',
   initialState,
   reducers: {
+    add: (state, action: PayloadAction<Omit<FeedItem, 'id'>>) => {
+      state.count++;
+      state.data.unshift({ ...action.payload, id: state.count });
+    },
     removeById: (state, action: PayloadAction<number>) => {
       const idx = state.data.findIndex((el) => el.id === action.payload);
       state.data.splice(idx, 1);
@@ -70,7 +75,7 @@ export const feedSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { removeById } = feedSlice.actions;
+export const { removeById, add } = feedSlice.actions;
 
 export default feedSlice.reducer;
 

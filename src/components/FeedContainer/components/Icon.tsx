@@ -1,9 +1,9 @@
 import NoteIcon from '@mui/icons-material/ChatBubble';
 import CoffeeIcon from '@mui/icons-material/Coffee';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ProfileIcon from '@mui/icons-material/Person';
 import PhoneIcon from '@mui/icons-material/Phone';
 import BeerIcon from '@mui/icons-material/SportsBar';
-// import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Type } from '../../../features/feed/feedSlice';
@@ -17,9 +17,9 @@ const Wrapper = styled(Avatar)(() => ({
   },
 }));
 
-type Props = {
+interface Props {
   type: Type;
-};
+}
 
 const Icon = ({ type }: Props) => {
   switch (type) {
@@ -33,6 +33,8 @@ const Icon = ({ type }: Props) => {
       return <BeerIcon />;
     case Type.Note:
       return <NoteIcon />;
+    case Type.List:
+      return <FormatListBulletedIcon />;
     default:
       return null;
   }
