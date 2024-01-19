@@ -1,4 +1,4 @@
-import { Type } from './type';
+import { Type } from '../../features/feed/feedSlice';
 
 export const TitleParts = {
   [Type.Meeting]: ` had a meeting with `,

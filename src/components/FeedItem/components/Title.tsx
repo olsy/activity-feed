@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
+import { Type } from '../../../features/feed/feedSlice';
 import { TitleParts } from '../constants';
-import { Type } from '../type';
 
 type Props = {
   type: Type;

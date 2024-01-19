@@ -6,7 +6,7 @@ import BeerIcon from '@mui/icons-material/SportsBar';
 // import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Type } from '../type';
+import { Type } from '../../../features/feed/feedSlice';
 
 const Wrapper = styled(Avatar)(() => ({
   borderRadius: '50%',

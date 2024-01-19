@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Type } from '../../features/feed/feedSlice';
 import Icon from './components/Icon';
 import Title from './components/Title';
-import { Type } from './type';
 
 const Wrapper = styled(Stack)(() => ({
   position: 'relative',
