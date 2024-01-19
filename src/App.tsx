@@ -1,25 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container } from '@mui/material';
+import FeedItem from './components/FeedItem';
+import { Type } from './components/FeedItem/type';
+
+const data = [
+  {
+    type: Type.Meeting,
+    from: 'You',
+    to: 'Milton Romaguera',
+    message: 'And a more formal meeting',
+    timestamp: '6d',
+  },
+  {
+    type: Type.Call,
+    from: 'You',
+    to: 'Milton Romaguera',
+    message: 'And a more formal meeting',
+    timestamp: '6d',
+  },
+  {
+    type: Type.Coffee,
+    from: 'You',
+    to: 'Milton Romaguera',
+    message: 'And a more formal meeting',
+    timestamp: '6d',
+  },
+  {
+    type: Type.Beer,
+    from: 'You',
+    to: 'Milton Romaguera',
+    message: 'And a more formal meeting',
+    timestamp: '6d',
+  },
+  {
+    type: Type.Note,
+    from: 'You',
+    to: 'Milton Romaguera',
+    message: 'And a more formal meeting',
+    timestamp: '6d',
+  },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container sx={{ width: '750px' }}>
+      {data.map((item) => (
+        <FeedItem key={item.type} {...item} />
+      ))}
+    </Container>
   );
 }
 
