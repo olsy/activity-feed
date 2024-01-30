@@ -1,9 +1,10 @@
 import { Button, FormControlLabel, Radio, RadioGroup, Stack, TextField, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from '../components/FeedContainer/components/Icon';
-import { add, Type } from '../features/feed/feedSlice';
+import { add, feedValueSelector, Type, updateById } from '../features/feed/feedSlice';
 
 const Textarea = styled(TextField)(() => ({
   flex: 1,
@@ -27,24 +28,33 @@ interface Props {
 }
 
 const FeedForm = ({ from, to }: Props) => {
+  const value = useSelector(feedValueSelector);
   const dispatch = useDispatch();
   const {
+    getValues,
+    setValue,
     register,
     // control,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<Inputs>({
-    defaultValues: {
+    defaultValues: value || {
       from,
       to,
       message: '',
       type: Type.Meeting,
     },
   });
+
+  useEffect(() => {
+    reset(value);
+  }, [value]);
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
-    dispatch(add({ ...data, timestamp: new Date().toISOString() }));
+
+    value ? dispatch(updateById(data)) : dispatch(add({ ...data, timestamp: new Date().toISOString() }));
     reset();
   };
 
@@ -55,7 +65,7 @@ const FeedForm = ({ from, to }: Props) => {
         {errors.message && <Typography component="span">This field is required</Typography>}
 
         <Stack mt={2} direction={'row'} justifyContent={'space-between'}>
-          <RadioGroup row name="row-radio-buttons-group">
+          <RadioGroup row name="row-radio-buttons-group" value={getValues('type')} onChange={(e) => setValue('type', e.target.value as Type)}>
             {Object.values(Type)
               .filter((t) => t !== Type.List)
               .map((t) => (

@@ -1,5 +1,4 @@
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import moment from 'moment';
 import { ReactNode } from 'react';
@@ -26,20 +25,13 @@ const ContentWrapper = styled(Box)(() => ({
   flex: 1,
 }));
 
-const Btn = styled(Button)(() => ({
-  position: 'absolute',
-  top: '10px',
-  right: '10px',
-}));
-
 interface Props {
   type?: Type;
   timestamp?: string;
   children: ReactNode;
-  remove?: () => void;
 }
 
-const FeedContainer = ({ type = Type.List, timestamp = '', children, remove }: Props) => (
+const FeedContainer = ({ type = Type.List, timestamp = '', children }: Props) => (
   <Wrapper direction={'row'} alignItems="center" spacing={2} sx={{ padding: '6px 0' }}>
     <Box>
       <Stack direction={'row'} alignItems="center" justifyContent="flex-end">
@@ -50,11 +42,6 @@ const FeedContainer = ({ type = Type.List, timestamp = '', children, remove }: P
       </Stack>
     </Box>
     <ContentWrapper>{children}</ContentWrapper>
-    {remove ? (
-      <Btn onClick={remove}>
-        <DeleteIcon />
-      </Btn>
-    ) : null}
   </Wrapper>
 );
 
