@@ -36,7 +36,6 @@ const FeedForm = ({ from, to }: Props) => {
   const value = useSelector(feedValueSelector);
   const dispatch = useDispatch();
   const {
-    getValues,
     register,
     control,
     handleSubmit,

@@ -4,18 +4,16 @@ import storage from 'redux-persist/lib/storage';
 import feedReducer from '../features/feed/feedSlice';
 
 const persistConfig = {
-  key: 'root',
+  key: 'feed',
   version: 1,
   storage,
+  blacklist: ['index'],
 };
 
 export const store = configureStore({
-  reducer: persistReducer(
-    persistConfig,
-    combineReducers({
-      feed: feedReducer,
-    }),
-  ),
+  reducer: combineReducers({
+    feed: persistReducer(persistConfig, feedReducer),
+  }),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
